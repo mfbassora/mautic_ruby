@@ -2,6 +2,7 @@ require 'active_support/core_ext/hash'
 require "mautic/version"
 require "mautic/configuration"
 require "mautic/contacts"
+require "mautic/companies"
 require "oauth2"
 
 
