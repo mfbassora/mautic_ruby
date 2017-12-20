@@ -2,6 +2,7 @@ require 'active_support/core_ext/hash'
 require "mautic/version"
 require "mautic/configuration"
 require "mautic/contacts"
+require "mautic/companies"
 require "oauth2"
 
 
@@ -40,11 +41,13 @@ module Mautic
  	@configuration.try(:token_hash)
  end
  def self.get_token
- 	client = OAuth2::Client.new( public_key, secret_key, :site => mautic_url,:token_url     => "/oauth/v2/token", :authorize_url => "/oauth/v2/authorize")
+ 	client = OAuth2::Client.new( public_key, secret_key, site: mautic_url, token_url: "/oauth/v2/token", authorize_url: "/oauth/v2/authorize")
 	token =  OAuth2::AccessToken.new(client,token_hash)
 	return token
  end
 
-
+ def self.update_token
+  @token = get_token
+ end
 
 end

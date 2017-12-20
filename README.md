@@ -20,6 +20,21 @@ Or install it yourself as:
 
     $ gem install mautic
 
+## OAuth2
+This is how you get your OAuth2 token hash:
+
+```ruby
+require 'oauth2'
+client = OAuth2::Client.new('client_id', 'client_secret', :site => 'https://example.org')
+
+client.auth_code.authorize_url(:redirect_uri => 'http://localhost:8080/oauth2/callback')
+# => "https://example.org/oauth/authorization?response_type=code&client_id=client_id&redirect_uri=http://localhost:8080/oauth2/callback"
+
+token = client.auth_code.get_token('authorization_code_value', :redirect_uri => 'http://localhost:8080/oauth2/callback')
+
+token_hash = token.token
+```
+
 ## Usage
 
 TODO: Write usage instructions here
@@ -32,7 +47,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/mautic. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/mfbassora/mautic_ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
