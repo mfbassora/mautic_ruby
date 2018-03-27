@@ -1,7 +1,7 @@
 
 module Mautic
  class Configuration
-   attr_accessor :public_key,:secret_key,:mautic_url,:token_hash
+   attr_accessor :public_key, :secret_key, :mautic_url, :token_hash, :enabled
 
    def initialize
      @public_key = nil
